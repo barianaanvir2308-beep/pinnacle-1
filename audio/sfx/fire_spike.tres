@@ -1,0 +1,15 @@
+[gd_resource type="AudioStreamRandomizer" format=3]
+
+[ext_resource type="AudioStream" path="res://audio/sfx/fire_spike/fire_spike_1.wav" id="1_mpgfp"]
+[ext_resource type="AudioStream" path="res://audio/sfx/fire_spike/fire_spike_2.wav" id="2_d03gs"]
+[ext_resource type="AudioStream" path="res://audio/sfx/fire_spike/fire_spike_3.wav" id="3_jnj1q"]
+[ext_resource type="AudioStream" path="res://audio/sfx/fire_spike/fire_spike_4.wav" id="4_0g3dl"]
+
+[resource]
+random_pitch = 1.0594631
+random_volume_offset_db = 2.0
+streams_count = 4
+stream_0/stream = ExtResource("1_mpgfp")
+stream_1/stream = ExtResource("2_d03gs")
+stream_2/stream = ExtResource("3_jnj1q")
+stream_3/stream = ExtResource("4_0g3dl")

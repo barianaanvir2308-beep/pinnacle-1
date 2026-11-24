@@ -1,0 +1,9 @@
+# docs/sound_design.md §0: never commit the ElevenLabs key or the raw generated sounds
+.env
+tools/sfx/raw/
+
+# Godot cache, macOS files and old copies: not part of the submission
+.godot/
+.DS_Store
+_to_delete/
+__pycache__/

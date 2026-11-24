@@ -1,0 +1,48 @@
+id,prompt,duration,loop,takes,prompt_influence
+core_hit,"Unique short urgent alarm tone with a low impact thump, computer core damaged",0.8,false,3,0.7
+core_crash,"System crash: loud electrical failure, then a falling power-down and digital static",2.5,false,1,0.7
+core_low_hp,"Slow repeating warning beep, about one beep per second, with a low pulse",4.0,true,1,0.7
+overclock_activate,"Rising charge-up whine, then a wide powerful electrical surge, overdrive engaged",2.0,false,2,0.7
+overclock_ready,"Short bright two-tone ready chime, energy recharged",0.6,false,1,0.7
+load_warning,"Single amber warning beep, computer system strain",0.6,false,1,0.7
+load_critical,"Double urgent red-alert beep, system overheating",0.8,false,1,0.7
+fire_cannon,Short punchy square-wave blaster thunk with a burst of white noise,0.5,false,4,0.7
+fire_spike,"Very short bright FM laser zip with fast pitch drop, sharp piercing",0.5,false,4,0.7
+fire_beam,"Thin crackling electric laser beam fire, short burst",0.6,false,3,0.7
+emp_pulse,"Deep electric EMP discharge, low whump, then fading crackle",1.0,false,3,0.7
+hit_generic,"Tiny crisp digital impact tick, subtle",0.5,false,4,0.7
+hit_armor,"Small hard metallic clank, deflected hit on armor plating",0.5,false,3,0.7
+death_small,"Crunchy bitcrushed digital pop as a computer virus is deleted, glitch",0.5,false,4,0.7
+death_large,"Bigger corrupted data explosion, glitchy crunch then digital debris scatter",1.0,false,3,0.7
+death_sweep,"Rapid burst of many small glitchy digital pops, like a cluster of files deleted at once",1.0,false,2,0.7
+wave_start,"Incoming connection alert: modem handshake chirp, then a deep synth alarm swell",2.5,false,2,0.7
+wave_clear,Resolving clean synth chord with a soft scan-complete chime,2.0,false,2,0.7
+level_start,"System boot-up sequence: hard-drive spin-up, then clean startup chime",2.5,false,1,0.7
+victory,"Triumphant short synthwave fanfare stinger, bright and resolved",4.0,false,2,0.7
+defeat,"Ominous system failure stinger, distorted descending synth and static fade",4.0,false,2,0.7
+countdown_tick,"Clean digital countdown tick, short metallic beep",0.5,false,1,0.7
+ui_hover,Very short soft high digital tick,0.5,false,2,0.7
+ui_click,"Sharp, high plastic click with a tiny bright digital blip",0.5,false,3,0.7
+ui_confirm,"Two quick rising clean synth notes, positive confirmation chime",0.6,false,2,0.7
+ui_back,"Two quick falling soft synth notes, gentle",0.5,false,2,0.7
+ui_error,"Soft muted low double blip, descending, dull and gentle, not a buzzer",0.5,false,2,0.7
+ui_select,Short crisp scanner lock-on beep,0.5,false,2,0.7
+ui_pause,"Quick downward tape-stop style synth swoop, soft",0.7,false,1,0.7
+ui_resume,"Quick upward synth swoop, soft",0.7,false,1,0.7
+tower_place,"Heavy mechanical lock-in thunk, then a short rising electronic power-up hum",1.0,false,3,0.7
+tower_upgrade,"Mechanical lock-in thunk, then three quick rising clean arpeggio notes",1.0,false,2,0.7
+tower_upgrade_t3,"Powerful energy surge rising, then a bright resonant chord hit, triumphant tech upgrade",1.8,false,2,0.7
+tower_sell,"Quick descending digital blips like data being refunded, then a soft click",0.8,false,2,0.7
+tower_repair,"Short electric welding crackle, then a gentle rising confirmation tone",1.0,false,2,0.7
+tower_destroyed,"Electrical short circuit pop, then sparks and a sad falling power-down whine",1.5,false,2,0.7
+tower_locked,"Heavy digital padlock clamp, then a short ominous encrypted glitch",1.0,false,2,0.7
+ability_purge,"Charging high whine, then a massive sharp digital blast cleansing the screen",2.0,false,2,0.7
+ability_freeze,"Crystalline freeze, rising shimmer, then a deep frozen digital stasis hum",2.0,false,2,0.7
+trojan_split_warn,"Rising glitchy alarm chirp, unstable digital warbling, building tension",1.0,false,2,0.7
+trojan_split,"Digital object cracking open, then three small glitchy chirps scattering",1.0,false,2,0.7
+worm_bite,Quick wet-sounding digital chomp with a short electric crackle,0.5,false,3,0.7
+worm_spread,"Squelchy glitch replicate sound, a digital organism duplicating",0.8,false,2,0.7
+ransomware_mark,"Ominous dial-up modem screech fragment, short warning, target locked",1.0,false,2,0.7
+amb_server,"Low server room hum with fans, faint hard-drive clicks and soft electrical buzz",20.0,true,1,0.7
+swarm_loop,"Dense buzzing swarm of tiny glitchy digital insects, chattering data noise",10.0,true,1,0.7
+energy_tick,"Tiny soft low-pitched digital bloop, warm and muted, like a small energy credit quietly absorbed, very short, no high frequencies",0.5,false,2,0.7

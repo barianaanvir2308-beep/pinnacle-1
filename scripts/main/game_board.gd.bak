@@ -1,0 +1,175 @@
+# game_board.gd — Grid rendering and A* pathfinding
+# Supports loading different maps per level
+extends Node2D
+class_name GameBoard
+
+var placement_preview_pos: Vector2i = Vector2i(-1, -1)
+var placement_valid: bool = false
+var astar: AStar2D
+var _time: float = 0.0
+
+func _ready() -> void:
+	_build_astar()
+
+func load_map() -> void:
+	_build_astar()
+	queue_redraw()
+
+func _build_astar() -> void:
+	astar = AStar2D.new()
+	var width = Globals.GRID_WIDTH
+	var height = Globals.GRID_HEIGHT
+	
+	for y in range(height):
+		for x in range(width):
+			var cell = Globals.get_cell_type(Vector2i(x, y))
+			if cell == Globals.CellType.PATH or cell == Globals.CellType.SPAWN or cell == Globals.CellType.ARDUINO:
+				var id = y * width + x
+				astar.add_point(id, Vector2(x, y))
+	
+	for y in range(height):
+		for x in range(width):
+			var id1 = y * width + x
+			if not astar.has_point(id1):
+				continue
+			if x < width - 1:
+				var id2 = y * width + (x + 1)
+				if astar.has_point(id2):
+					astar.connect_points(id1, id2)
+			if y < height - 1:
+				var id3 = (y + 1) * width + x
+				if astar.has_point(id3):
+					astar.connect_points(id1, id3)
+
+func get_spawn_points() -> Array[Vector2i]:
+	var spawns: Array[Vector2i] = []
+	for y in range(Globals.GRID_HEIGHT):
+		for x in range(Globals.GRID_WIDTH):
+			if Globals.get_cell_type(Vector2i(x, y)) == Globals.CellType.SPAWN:
+				spawns.append(Vector2i(x, y))
+	return spawns
+
+func get_arduino_position() -> Vector2i:
+	for y in range(Globals.GRID_HEIGHT):
+		for x in range(Globals.GRID_WIDTH):
+			if Globals.get_cell_type(Vector2i(x, y)) == Globals.CellType.ARDUINO:
+				return Vector2i(x, y)
+	return Vector2i(7, 4)
+
+func find_path(from: Vector2i, to: Vector2i) -> Array[Vector2]:
+	var from_id = from.y * Globals.GRID_WIDTH + from.x
+	var to_id = to.y * Globals.GRID_WIDTH + to.x
+	
+	if not astar.has_point(from_id):
+		from_id = astar.get_closest_point(Vector2(from.x, from.y))
+	if not astar.has_point(to_id):
+		to_id = astar.get_closest_point(Vector2(to.x, to.y))
+	
+	var grid_path = astar.get_point_path(from_id, to_id)
+	var world_path: Array[Vector2] = []
+	for point in grid_path:
+		world_path.append(Globals.grid_to_world(Vector2i(int(point.x), int(point.y))))
+	return world_path
+
+func show_placement_preview(grid_pos: Vector2i, valid: bool) -> void:
+	placement_preview_pos = grid_pos
+	placement_valid = valid
+	queue_redraw()
+
+func clear_preview() -> void:
+	placement_preview_pos = Vector2i(-1, -1)
+	queue_redraw()
+
+func _process(delta: float) -> void:
+	_time += delta
+	queue_redraw()
+
+func _draw() -> void:
+	var ts = Globals.TILE_SIZE
+	var offset = Globals.GRID_OFFSET
+	for y in range(Globals.GRID_HEIGHT):
+		for x in range(Globals.GRID_WIDTH):
+			var rect = Rect2(x * ts + offset.x, y * ts + offset.y, ts, ts)
+			var cell_type = Globals.get_cell_type(Vector2i(x, y))
+			match cell_type:
+				Globals.CellType.BLOCKED:
+					_draw_blocked_cell(rect)
+				Globals.CellType.PATH:
+					_draw_path_cell(rect, x, y)
+				Globals.CellType.BUILDABLE:
+					_draw_buildable_cell(rect)
+				Globals.CellType.ARDUINO:
+					_draw_arduino_cell(rect)
+				Globals.CellType.SPAWN:
+					_draw_spawn_cell(rect)
+			draw_rect(rect, Color(0.08, 0.08, 0.18, 0.4), false, 1.0)
+	
+	if placement_preview_pos.x >= 0 and placement_preview_pos.y >= 0:
+		var preview_rect = Rect2(placement_preview_pos.x * ts + offset.x, placement_preview_pos.y * ts + offset.y, ts, ts)
+		var color = Color(0.0, 1.0, 0.53, 0.35) if placement_valid else Color(1.0, 0.2, 0.2, 0.35)
+		draw_rect(preview_rect, color)
+		draw_rect(preview_rect, color * 1.5, false, 2.0)
+
+func _draw_blocked_cell(rect: Rect2) -> void:
+	draw_rect(rect, Color(0.02, 0.02, 0.05))
+	var cx = rect.position.x + rect.size.x * 0.5
+	var cy = rect.position.y + rect.size.y * 0.5
+	draw_line(Vector2(cx - 15, cy), Vector2(cx + 15, cy), Color(0.06, 0.06, 0.12), 1.0)
+
+func _draw_path_cell(rect: Rect2, gx: int, gy: int) -> void:
+	draw_rect(rect, Color(0.02, 0.02, 0.05))
+	var inner = rect.grow(-rect.size.x * 0.28)
+	var glow_alpha = 0.5 + 0.15 * sin(_time * 2.0 + gx * 0.5 + gy * 0.3)
+	draw_rect(inner, Color(0.0, 0.8, 1.0, glow_alpha))
+	draw_rect(inner, Color(0.0, 0.9, 1.0, glow_alpha + 0.1), false, 1.5)
+	var ts = Globals.TILE_SIZE
+	var center = rect.position + rect.size * 0.5
+	if gx < Globals.GRID_WIDTH - 1:
+		var rt = Globals.get_cell_type(Vector2i(gx + 1, gy))
+		if rt == Globals.CellType.PATH or rt == Globals.CellType.ARDUINO or rt == Globals.CellType.SPAWN:
+			draw_line(center, center + Vector2(ts, 0), Color(0.0, 0.7, 0.9, 0.3), 2.0)
+	if gy < Globals.GRID_HEIGHT - 1:
+		var dt = Globals.get_cell_type(Vector2i(gx, gy + 1))
+		if dt == Globals.CellType.PATH or dt == Globals.CellType.ARDUINO or dt == Globals.CellType.SPAWN:
+			draw_line(center, center + Vector2(0, ts), Color(0.0, 0.7, 0.9, 0.3), 2.0)
+
+func _draw_buildable_cell(rect: Rect2) -> void:
+	draw_rect(rect, Color(0.02, 0.03, 0.06))
+	var pad = rect.grow(-6)
+	draw_rect(pad, Color(0.0, 1.0, 0.53, 0.08))
+	var corners = [pad.position, Vector2(pad.end.x, pad.position.y), pad.end, Vector2(pad.position.x, pad.end.y)]
+	for i in range(4):
+		var from_pt = corners[i]
+		var to_pt = corners[(i + 1) % 4]
+		for s in range(6):
+			if s % 2 == 0:
+				var t0 = float(s) / 6.0
+				var t1 = float(s + 1) / 6.0
+				draw_line(from_pt.lerp(to_pt, t0), from_pt.lerp(to_pt, t1), Color(0.0, 1.0, 0.53, 0.25), 1.0)
+
+func _draw_arduino_cell(rect: Rect2) -> void:
+	var glow = 0.7 + 0.3 * sin(_time * 3.0)
+	draw_rect(rect, Color(0.15, 0.12, 0.0))
+	var chip = rect.grow(-10)
+	draw_rect(chip, Color(1.0, 0.84, 0.0, glow * 0.4))
+	draw_rect(chip, Color(1.0, 0.84, 0.0, glow * 0.8), false, 3.0)
+	var cx = rect.position.x + rect.size.x * 0.5
+	var cy = rect.position.y + rect.size.y * 0.5
+	var pin_color = Color(1.0, 0.84, 0.0, glow * 0.6)
+	for i in range(3):
+		var offset = -20 + i * 20
+		draw_line(Vector2(cx + offset, rect.position.y), Vector2(cx + offset, rect.position.y + 12), pin_color, 2.0)
+		draw_line(Vector2(cx + offset, rect.end.y - 12), Vector2(cx + offset, rect.end.y), pin_color, 2.0)
+		draw_line(Vector2(rect.position.x, cy + offset), Vector2(rect.position.x + 12, cy + offset), pin_color, 2.0)
+		draw_line(Vector2(rect.end.x - 12, cy + offset), Vector2(rect.end.x, cy + offset), pin_color, 2.0)
+
+func _draw_spawn_cell(rect: Rect2) -> void:
+	draw_rect(rect, Color(0.08, 0.02, 0.02))
+	var pulse = 0.4 + 0.3 * sin(_time * 4.0)
+	var inner = rect.grow(-15)
+	draw_rect(inner, Color(1.0, 0.2, 0.2, pulse))
+	draw_rect(inner, Color(1.0, 0.3, 0.3, pulse + 0.2), false, 2.0)
+	var cx = rect.position.x + rect.size.x * 0.5
+	var cy = rect.position.y + rect.size.y * 0.5
+	var arrow = PackedVector2Array([Vector2(cx - 10, cy - 8), Vector2(cx + 10, cy), Vector2(cx - 10, cy + 8)])
+	draw_colored_polygon(arrow, Color(1.0, 0.4, 0.4, pulse))

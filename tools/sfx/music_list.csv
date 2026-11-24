@@ -1,0 +1,5 @@
+id,prompt,duration,loop,takes,prompt_influence
+music_base,"Calm dark synth pad with a soft slow pulse, cyberpunk, 90 BPM, no drums",20,true,1,0.7
+music_drums,"Driving electronic drum and bass groove, darksynth, 90 BPM, no melody",20,true,1,0.7
+music_lead,"Aggressive gritty synth arpeggio lead, darksynth, 90 BPM, no drums",20,true,1,0.7
+music_menu,"Moody dark ambient synth pad, slow and mysterious, cyberpunk menu music",20,true,1,0.7

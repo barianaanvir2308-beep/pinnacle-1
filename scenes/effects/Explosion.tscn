@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="GDScript" id="1"]
+script/source = "extends Node2D
+
+var lifetime: float = 0.5
+var timer: float = 0.0
+
+func _process(delta: float) -> void:
+	timer += delta
+	if timer >= lifetime:
+		queue_free()
+	queue_redraw()
+
+func _draw() -> void:
+	var progress = timer / lifetime
+	var radius = 20.0 + progress * 50.0
+	var alpha = 1.0 - progress
+	draw_circle(Vector2.ZERO, radius, Color(1.0, 0.4, 0.0, alpha))
+"
+
+[node name="Explosion" type="Node2D"]
+script = SubResource("1")

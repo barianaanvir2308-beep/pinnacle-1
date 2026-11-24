@@ -1,0 +1,15 @@
+[gd_resource type="AudioStreamRandomizer" format=3]
+
+[ext_resource type="AudioStream" path="res://audio/sfx/death_small/death_small_1.wav" id="1_w62jm"]
+[ext_resource type="AudioStream" path="res://audio/sfx/death_small/death_small_2.wav" id="2_dw0f5"]
+[ext_resource type="AudioStream" path="res://audio/sfx/death_small/death_small_3.wav" id="3_j2wng"]
+[ext_resource type="AudioStream" path="res://audio/sfx/death_small/death_small_4.wav" id="4_622gc"]
+
+[resource]
+random_pitch = 1.0594631
+random_volume_offset_db = 2.0
+streams_count = 4
+stream_0/stream = ExtResource("1_w62jm")
+stream_1/stream = ExtResource("2_dw0f5")
+stream_2/stream = ExtResource("3_j2wng")
+stream_3/stream = ExtResource("4_622gc")

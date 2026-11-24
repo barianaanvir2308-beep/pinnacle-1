@@ -1,0 +1,63 @@
+game,tower,role,level,build_or_upgrade_cost,cumulative_cost,damage_per_hit,attack_interval_s,dps_single_target,range,dps_per_cost,special,source_or_basis
+Plants vs. Zombies,Peashooter,baseline DPS,1,100,100,20,1.425,14.0,whole lane,0.14,,plantsvszombies.wiki.gg
+Plants vs. Zombies,Repeater,double DPS,1,200,200,20 x2,1.425,28.1,whole lane,0.141,same DPS/sun as Peashooter; saves a tile,PvZ wiki (commonly cited)
+Plants vs. Zombies,Snow Pea,slow,1,175,175,20,1.5,13.3,whole lane,0.076,slows move+attack 50%; pays a utility premium,plantsvszombies.wiki.gg
+Plants vs. Zombies,Sunflower,economy,1,50,50,,,,,,+25 sun after ~7s then every 24s; pays back after ~31s (second drop),plantsvszombies.wiki.gg
+Plants vs. Zombies,Wall-nut,blocker,1,50,50,,,,,,4000 toughness (= 20 normal zombies' health),plantsvszombies.wiki.gg
+Plants vs. Zombies,Cherry Bomb,burst AoE,1,150,150,1800,one-shot,,3x3 tiles,,instant; emergency answer,PvZ wiki (commonly cited)
+Defense Grid,Gun,all-rounder,1,100,100,,,10,3.5–4 squares,0.1,upgrades keep DPS/cost flat (x1/x3/x7 dmg),GameFAQs DG FAQ (Brixx79); ayumilove DG guide
+Defense Grid,Gun,all-rounder,2,200,300,,,30,3.5–4 squares,0.1,upgrades keep DPS/cost flat (x1/x3/x7 dmg),GameFAQs DG FAQ (Brixx79); ayumilove DG guide
+Defense Grid,Gun,all-rounder,3,400,700,,,70,3.5–4 squares,0.1,upgrades keep DPS/cost flat (x1/x3/x7 dmg),GameFAQs DG FAQ (Brixx79); ayumilove DG guide
+Defense Grid,Cannon,long-range single,1,200,200,80 per 5s,5.0,16,1.5–6.5 squares,0.08,minimum range; upgrades 400/800,GameFAQs DG FAQ (Brixx79); ayumilove DG guide
+Defense Grid,Inferno,AoE DoT,1,150,150,,,4.17,2.5 squares,0.028,hits all in cone; upgrades 300/600; L3 = 23.9 DPS,GameFAQs DG FAQ (Brixx79); ayumilove DG guide
+Defense Grid,Tesla,charge-up,1,175,175,32.8 base,,,2.5 squares,,damage grows with charge time; upgrades 350/700,GameFAQs DG FAQ (Brixx79); ayumilove DG guide
+Defense Grid,Meteor,AoE artillery,1,250,250,50.6 per shot,,,2–8.5 squares,,min range 2; upgrades 500/1000,GameFAQs DG FAQ (Brixx79); ayumilove DG guide
+Defense Grid,Laser,DoT vs fast,1,200,200,,,,3.5 squares,,burn keeps ticking after target leaves range; upgrades 400/800,GameFAQs DG FAQ (Brixx79); ayumilove DG guide
+Defense Grid,Temporal,slow/support,1,300,300,,,,2.5–4.5 squares,,slows ~50%; flat 300 per upgrade,GameFAQs DG FAQ (Brixx79); ayumilove DG guide
+Defense Grid,Command,economy/support,1,300,300,,,,3.5–5.5 squares,,+25/35/45% resources from kills in range; reveals stealth,GameFAQs DG FAQ (Brixx79); ayumilove DG guide
+Bloons TD (5 / Battles),Dart Monkey,baseline,0,200,200,"1 layer, pierce 1",,,short,,cheap early defence,BTD5 medium prices (Battles 1 uses BTD5-era towers); bloonswiki
+Bloons TD (5 / Battles),Dart Monkey – path A,Long Range Darts,1,90,,,,,,,tier costs grow ~1:1.3:5.6:17,BTD5 medium prices (Battles 1 uses BTD5-era towers)
+Bloons TD (5 / Battles),Dart Monkey – path A,Enhanced Eyesight,2,120,,,,,,,tier costs grow ~1:1.3:5.6:17,BTD5 medium prices (Battles 1 uses BTD5-era towers)
+Bloons TD (5 / Battles),Dart Monkey – path A,Spike-o-pult,3,500,,,,,,,tier costs grow ~1:1.3:5.6:17,BTD5 medium prices (Battles 1 uses BTD5-era towers)
+Bloons TD (5 / Battles),Dart Monkey – path A,Juggernaut,4,1500,,,,,,,tier costs grow ~1:1.3:5.6:17,BTD5 medium prices (Battles 1 uses BTD5-era towers)
+Bloons TD (5 / Battles),Dart Monkey – path B,Sharp Shots,1,140,,,,,,,tier 4 is a 24x price jump (capstone),BTD5 medium prices (Battles 1 uses BTD5-era towers)
+Bloons TD (5 / Battles),Dart Monkey – path B,Razor Sharp Shots,2,170,,,,,,,tier 4 is a 24x price jump (capstone),BTD5 medium prices (Battles 1 uses BTD5-era towers)
+Bloons TD (5 / Battles),Dart Monkey – path B,Triple Darts,3,330,,,,,,,tier 4 is a 24x price jump (capstone),BTD5 medium prices (Battles 1 uses BTD5-era towers)
+Bloons TD (5 / Battles),Dart Monkey – path B,Super Monkey Fan Club,4,8000,,,,,,,tier 4 is a 24x price jump (capstone),BTD5 medium prices (Battles 1 uses BTD5-era towers)
+Plants vs. Zombies,Garlic,decoy/diverter,1,50,50,,,,,,400 toughness; zombies that bite it switch lane,plantsvszombies.wiki.gg
+Plants vs. Zombies,Ice-shroom,area freeze,1,75,75,20,one-shot,,whole screen,,freeze 3.25s then 50% slow 16s; very slow recharge,plantsvszombies.wiki.gg
+Bloons TD 5,Monkey Village,support aura,0,1600,1600,,,,radius,,-10% cost nearby; Beacon +15% range; Jungle Drums +15% atk speed; Radar Scanner = camo detection,bloonswiki Monkey Village (BTD5)
+Protocol Zero (current code),Antivirus Cannon,,1,100,100,15,1.0,15.0,3.5,0.15,fire_rate treated as shots/sec,autoloads/globals.gd + base_tower.gd
+Protocol Zero (current code),Data Spike,,1,250,250,40,0.56,72.0,4.0,0.288,fire_rate treated as shots/sec,autoloads/globals.gd + base_tower.gd
+Protocol Zero (current code),EMP Tower,,1,150,150,7,2.86,2.45,3.0,0.016,fire_rate treated as shots/sec; slow 50% 1s,autoloads/globals.gd + base_tower.gd
+Protocol Zero (current code),Sniper Node,,1,350,350,80,3.33,24.0,7.5,0.069,fire_rate treated as shots/sec,autoloads/globals.gd + base_tower.gd
+Protocol Zero (current code),Quarantine Zone,,1,400,400,8,5.0,1.6,2.5,0.004,fire_rate treated as shots/sec; hits all in range,autoloads/globals.gd + base_tower.gd
+Protocol Zero (current code),Firewall Beam,,1,500,500,2,continuous,120,4.0,0.24,fire_rate treated as shots/sec; code applies damage*60 per second,autoloads/globals.gd + base_tower.gd
+Protocol Zero (current code),Overclock Hub,,1,1000,1000,200,2.0,100.0,5.0,0.1,fire_rate treated as shots/sec,autoloads/globals.gd + base_tower.gd
+Protocol Zero (proposed v2),Antivirus Cannon,offensive baseline,1,100,100,15,1.0,15,3.5,0.15,FIRST,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Antivirus Cannon,offensive baseline,2,100,200,31.5,1.0,31.5,3.85,0.158,FIRST,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Antivirus Cannon,offensive baseline,3,200,400,66.0,1.0,66.0,4.2,0.165,FIRST,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Data Spike,offensive burst,1,225,225,80,2.5,32.0,4.5,0.142,STRONGEST; kills Trojans before 8s split; armour-pierce,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Data Spike,offensive burst,2,225,450,168.0,2.5,67.2,4.95,0.149,STRONGEST; kills Trojans before 8s split; armour-pierce,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Data Spike,offensive burst,3,450,900,352.0,2.5,140.8,5.4,0.156,STRONGEST; kills Trojans before 8s split; armour-pierce,docs/balance_spec.md v2
+Protocol Zero (proposed v2),EMP Tower,control (stun),1,175,175,4,4.0,,2.5,,stuns all in radius 1.0s; bosses slowed 50%,docs/balance_spec.md v2
+Protocol Zero (proposed v2),EMP Tower,control (stun),2,175,350,4,4.0,,2.75,,stuns all in radius 1.25s; bosses slowed 50%,docs/balance_spec.md v2
+Protocol Zero (proposed v2),EMP Tower,control (stun),3,175,525,4,3.5,,3.0,,stuns all in radius 1.5s; bosses slowed 50%,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Firewall,control (gate),1,150,150,,,,adjacent,,closes one path direction; HP 300; never the last route,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Firewall,control (gate),2,150,300,,,,adjacent,,closes one path direction; HP 500; never the last route,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Firewall,control (gate),3,150,450,,,,adjacent,,closes one path direction; HP 800; never the last route,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Quarantine Tower,control (trap),1,200,200,,6,,3.0,,traps 1 lead virus 2.5s; boss immune,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Quarantine Tower,control (trap),2,200,400,,5,,3.0,,traps 1 lead virus 3.0s; boss immune,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Quarantine Tower,control (trap),3,200,600,,5,,3.0,,traps 2 lead virus 3.0s; boss immune,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Decoy Tower,control (taunt),1,100,100,,,,3.0,,HP 400; pulls Worms/Ransomware; boss ignores,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Decoy Tower,control (taunt),2,100,200,,,,3.5,,HP 700; pulls Worms/Ransomware; boss ignores,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Decoy Tower,control (taunt),3,100,300,,,,4.0,,HP 1100; pulls Worms/Ransomware; boss ignores,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Scanner (unsure),support (detect),1,150,150,,,,3.5,,reveals Stealth; halves Ransomware locks; wave preview,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Scanner (unsure),support (detect),2,150,300,,,,4.5,,reveals Stealth; halves Ransomware locks; wave preview,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Scanner (unsure),support (detect),3,150,450,,,,5.5,,reveals Stealth; halves Ransomware locks; wave preview,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Signal Booster,support (aura),1,200,200,,,,2.0,,+15% range and attack speed to nearby towers,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Signal Booster,support (aura),2,200,400,,,,2.0,,+20% range and attack speed to nearby towers,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Signal Booster,support (aura),3,200,600,,,,2.0,,+25% range and attack speed to nearby towers,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Energy Decoder,economy,1,150,150,,,,,,+1.5 Energy/s; payback 100s; virus priority target,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Energy Decoder,economy,2,150,300,,,,,,+2.5 Energy/s; payback 120s; virus priority target,docs/balance_spec.md v2
+Protocol Zero (proposed v2),Energy Decoder,economy,3,300,600,,,,,,+5.0 Energy/s; payback 120s; virus priority target,docs/balance_spec.md v2

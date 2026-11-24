@@ -1,0 +1,31 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== [spammer] Level 2: Dual Bus (start 350 Energy, Arduino 100 HP, 10 waves)
+   map: 38 buildable tiles, 45 route tiles, best tile covers 13, a tile is worth a Cannon at coverage >= 3.9 (38 tiles worth it at the start)
+   wave  1  E@build  350  spent  300  left   50 | towers  3  lost 0  lock   0.0s  leaks  0 | Arduino 100 HP
+      >> wave 1: leaks by type: none | towers lost: none | no Trojans | lock 0.0s | counters at start: 0 Spike, 0 EMP
+   wave  2  E@build  177  spent  200  left   30 | towers  5  lost 0  lock   0.0s  leaks  0 | Arduino 100 HP
+      >> wave 2: leaks by type: none | towers lost: none | no Trojans | lock 0.0s | counters at start: 0 Spike, 0 EMP
+   wave  3  E@build  202  spent  225  left   30 | towers  7  lost 0  lock   0.0s  leaks  0 | Arduino 100 HP
+      >> wave 3: leaks by type: none | towers lost: none | no Trojans | lock 0.0s | counters at start: 0 Spike, 0 EMP
+   wave  4  E@build  214  spent  200  left   68 | towers  9  lost 0  lock   0.0s  leaks  1 | Arduino  99 HP
+      >> wave 4: leaks by type: Worm x1 (-1 HP) | towers lost: none | 2 Trojan(s): 2 split, 0 killed before splitting, 0 still on the field or leaked | lock 0.0s | counters at start: 0 Spike, 0 EMP
+   wave  5  E@build  279  spent  305  left   28 | towers 12  lost 0  lock   0.0s  leaks  0 | Arduino  99 HP
+      >> wave 5: leaks by type: none | towers lost: none | 2 Trojan(s): 2 split, 0 killed before splitting, 0 still on the field or leaked | lock 0.0s | counters at start: 0 Spike, 0 EMP
+   wave  6  E@build  299  spent  300  left   53 | towers 15  lost 0  lock   0.0s  leaks  0 | Arduino  99 HP
+      >> wave 6: leaks by type: none | towers lost: none | 4 Trojan(s): 1 split, 3 killed before splitting, 0 still on the field or leaked | lock 0.0s | counters at start: 0 Spike, 0 EMP
+   wave  7  E@build  304  spent  338  left   19 | towers 18  lost 0  lock  12.0s  leaks  0 | Arduino  99 HP
+      >> wave 7: leaks by type: none | towers lost: none | no Trojans | lock 12.0s | counters at start: 0 Spike, 0 EMP
+   wave  8  E@build  388  spent  388  left   53 | towers 21  lost 0  lock  15.0s  leaks  0 | Arduino  99 HP
+      >> wave 8: leaks by type: none | towers lost: none | 5 Trojan(s): 3 split, 2 killed before splitting, 0 still on the field or leaked | lock 15.0s | counters at start: 0 Spike, 0 EMP
+   wave  9  E@build  360  spent  315  left   99 | towers 24  lost 0  lock  18.0s  leaks  0 | Arduino  99 HP
+      >> wave 9: leaks by type: none | towers lost: none | 6 Trojan(s): 6 split, 0 killed before splitting, 0 still on the field or leaked | lock 18.0s | counters at start: 0 Spike, 0 EMP
+   wave 10  E@build  464  spent  484  left   33 | towers 28  lost 0  lock  12.0s  leaks  0 | Arduino  99 HP
+      >> wave 10: leaks by type: none | towers lost: none | 3 Trojan(s): 0 split, 3 killed before splitting, 0 still on the field or leaked | lock 12.0s | counters at start: 0 Spike, 0 EMP
+[spammer] L2 Dual Bus    CLEARED Arduino  99/100 HP  (reached wave 10, 28 towers, spent 3055, lost 0 towers, 56 lock-s, 1 leaks | game 421s, real 2s) target: clears with >= 50 HP  -> PASS
+RESULT level=2 bot=spammer outcome=CLEARED hp=99 wave=10 ddos=-
+
+== check_balance summary (targets: docs/difficulty_fix.md 5.2) ==
+[spammer] L2 Dual Bus    CLEARED Arduino  99/100 HP  (reached wave 10, 28 towers, spent 3055, lost 0 towers, 56 lock-s, 1 leaks | game 421s, real 2s) target: clears with >= 50 HP  -> PASS
+check_balance: PASS

@@ -1,0 +1,30 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== [specialist] Level 5: Kernel Panic (start 600 Energy, Arduino 100 HP, 10 waves, Data Spikes from wave 2)
+   map: 34 buildable tiles, 39 route tiles, best tile covers 17, a tile is worth a Cannon at coverage >= 5.1 (22 tiles worth it at the start)
+   wave  1  E@build  600  spent  575  left   25 | towers  5  lost 0  lock   0.0s  leaks 15 | Arduino  69 HP
+      >> wave 1: leaks by type: Basic Virus x4 (-20 HP), Worm x5 (-5 HP), DDoS Bot x6 (-6 HP) | towers lost: none | no Trojans | lock 0.0s | counters at start: 0 Spike, 1 EMP
+   wave  2  E@build  275  spent  249  left   79 | towers  6  lost 0  lock   9.0s  leaks  1 | Arduino  64 HP
+      >> wave 2: leaks by type: Ransomware x1 (-5 HP) | towers lost: none | 3 Trojan(s): 1 split, 2 killed before splitting, 0 still on the field or leaked | lock 9.0s | counters at start: 1 Spike, 1 EMP
+   wave  3  E@build  378  spent  409  left   22 | towers 10  lost 0  lock   0.0s  leaks  0 | Arduino  64 HP
+      >> wave 3: leaks by type: none | towers lost: none | no Trojans | lock 0.0s | counters at start: 1 Spike, 1 EMP
+   wave  4  E@build  205  spent  225  left   34 | towers 11  lost 0  lock  15.0s  leaks  0 | Arduino  64 HP
+      >> wave 4: leaks by type: none | towers lost: none | 6 Trojan(s): 0 split, 6 killed before splitting, 0 still on the field or leaked | lock 15.0s | counters at start: 2 Spike, 1 EMP
+   wave  5  E@build  303  spent  340  left   17 | towers 13  lost 0  lock   0.0s  leaks  0 | Arduino  64 HP
+      >> wave 5: leaks by type: none | towers lost: none | 3 Trojan(s): 0 split, 3 killed before splitting, 0 still on the field or leaked | lock 0.0s | counters at start: 3 Spike, 1 EMP
+   wave  6  E@build  284  spent  335  left    2 | towers 16  lost 0  lock  21.0s  leaks  0 | Arduino  64 HP
+      >> wave 6: leaks by type: none | towers lost: none | 6 Trojan(s): 0 split, 6 killed before splitting, 0 still on the field or leaked | lock 21.0s | counters at start: 3 Spike, 1 EMP
+   wave  7  E@build  383  spent  346  left   90 | towers 18  lost 0  lock  24.0s  leaks  9 | Arduino  43 HP
+      >> wave 7: leaks by type: Ransomware x3 (-15 HP), Worm x6 (-6 HP) | towers lost: none | no Trojans | lock 24.0s | counters at start: 4 Spike, 1 EMP
+   wave  8  E@build  495  spent  509  left   39 | towers 21  lost 0  lock  21.0s  leaks  0 | Arduino  43 HP
+      >> wave 8: leaks by type: none | towers lost: none | 7 Trojan(s): 1 split, 6 killed before splitting, 0 still on the field or leaked | lock 21.0s | counters at start: 5 Spike, 1 EMP
+   wave  9  E@build  540  spent  581  left   12 | towers 21  lost 0  lock  18.0s  leaks  8 | Arduino  27 HP
+      >> wave 9: leaks by type: DDoS Bot x3 (-3 HP), Worm x3 (-3 HP), Ransomware x2 (-10 HP) | towers lost: none | no Trojans | lock 18.0s | counters at start: 5 Spike, 1 EMP
+      >> wave 10 (ARDUINO DESTROYED): leaks by type: Trojan Horse x1 (-7 HP), Basic Virus x5 (-15 HP), Ransomware x1 (-5 HP) | towers lost: none | 6 Trojan(s): 3 split, 2 killed before splitting, 1 still on the field or leaked | lock 20.5s | counters at start: 5 Spike, 1 EMP
+[specialist] L5 Kernel Panic FAILED  Arduino   0/100 HP  (reached wave 10, 21 towers, spent 4087, lost 0 towers, 128 lock-s, 40 leaks | game 496s, real 2s) target: clears, or fails at wave 9-10  -> PASS
+RESULT level=5 bot=specialist outcome=FAILED hp=0 wave=10 ddos=1:6,3:0,7:0,9:3,10:0
+
+== check_balance summary (targets: docs/difficulty_fix.md 5.2) ==
+[specialist] L5 Kernel Panic FAILED  Arduino   0/100 HP  (reached wave 10, 21 towers, spent 4087, lost 0 towers, 128 lock-s, 40 leaks | game 496s, real 2s) target: clears, or fails at wave 9-10  -> PASS
+check_balance: PASS

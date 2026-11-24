@@ -1,0 +1,31 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== [controller] Level 3: Spiral Core (start 400 Energy, Arduino 100 HP, 10 waves)
+   map: 55 buildable tiles, 65 route tiles, best tile covers 20, a tile is worth a Cannon at coverage >= 6.0 (55 tiles worth it at the start)
+   wave  1  E@build  400  spent  400  left    0 | towers  4  lost 0  lock   0.0s  leaks  0 | Arduino 100 HP
+      >> wave 1: leaks by type: none | towers lost: none | no Trojans | lock 0.0s | counters at start: 0 Spike, 0 EMP
+   wave  2  E@build  191  spent  190  left   54 | towers  5  lost 0  lock   0.0s  leaks  0 | Arduino 100 HP
+      >> wave 2: leaks by type: none | towers lost: none | no Trojans | lock 0.0s | counters at start: 0 Spike, 1 EMP
+   wave  3  E@build  180  spent  200  left   33 | towers  7  lost 0  lock   0.0s  leaks  0 | Arduino 100 HP
+      >> wave 3: leaks by type: none | towers lost: none | no Trojans | lock 0.0s | counters at start: 0 Spike, 1 EMP
+   wave  4  E@build  217  spent  190  left   81 | towers  8  lost 0  lock  18.0s  leaks  0 | Arduino 100 HP
+      >> wave 4: leaks by type: none | towers lost: none | no Trojans | lock 18.0s | counters at start: 0 Spike, 1 EMP
+   wave  5  E@build  288  spent  293  left   48 | towers 10  lost 0  lock   0.0s  leaks  0 | Arduino 100 HP
+      >> wave 5: leaks by type: none | towers lost: none | 4 Trojan(s): 4 split, 0 killed before splitting, 0 still on the field or leaked | lock 0.0s | counters at start: 0 Spike, 2 EMP
+   wave  6  E@build  327  spent  370  left   11 | towers 12  lost 0  lock   0.0s  leaks  0 | Arduino 100 HP
+      >> wave 6: leaks by type: none | towers lost: none | no Trojans | lock 0.0s | counters at start: 0 Spike, 2 EMP
+   wave  7  E@build  251  spent  275  left   29 | towers 13  lost 0  lock  21.0s  leaks  0 | Arduino 100 HP
+      >> wave 7: leaks by type: none | towers lost: none | 5 Trojan(s): 5 split, 0 killed before splitting, 0 still on the field or leaked | lock 21.0s | counters at start: 0 Spike, 2 EMP
+   wave  8  E@build  392  spent  397  left   49 | towers 15  lost 0  lock  27.0s  leaks  0 | Arduino 100 HP
+      >> wave 8: leaks by type: none | towers lost: none | no Trojans | lock 27.0s | counters at start: 0 Spike, 2 EMP
+   wave  9  E@build  467  spent  423  left   98 | towers 18  lost 0  lock  27.0s  leaks  0 | Arduino 100 HP
+      >> wave 9: leaks by type: none | towers lost: none | 6 Trojan(s): 6 split, 0 killed before splitting, 0 still on the field or leaked | lock 27.0s | counters at start: 0 Spike, 2 EMP
+   wave 10  E@build  527  spent  552  left   29 | towers 18  lost 0  lock  27.0s  leaks  0 | Arduino 100 HP
+      >> wave 10: leaks by type: none | towers lost: none | 3 Trojan(s): 3 split, 0 killed before splitting, 0 still on the field or leaked | lock 27.0s | counters at start: 0 Spike, 2 EMP
+[controller] L3 Spiral Core CLEARED Arduino 100/100 HP  (reached wave 10, 18 towers, spent 3290, lost 0 towers, 119 lock-s, 0 leaks | game 496s, real 2s) target: clears with >= 40 HP  -> PASS
+RESULT level=3 bot=controller outcome=CLEARED hp=100 wave=10 ddos=2:0,4:0,6:0,8:0,10:0
+
+== check_balance summary (targets: docs/difficulty_fix.md 5.2) ==
+[controller] L3 Spiral Core CLEARED Arduino 100/100 HP  (reached wave 10, 18 towers, spent 3290, lost 0 towers, 119 lock-s, 0 leaks | game 496s, real 2s) target: clears with >= 40 HP  -> PASS
+check_balance: PASS

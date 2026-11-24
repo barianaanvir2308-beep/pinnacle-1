@@ -1,0 +1,31 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== [specialist] Level 1: Bootloader (start 300 Energy, Arduino 100 HP, 10 waves, Data Spikes from wave 5)
+   map: 21 buildable tiles, 31 route tiles, best tile covers 15, a tile is worth a Cannon at coverage >= 4.5 (19 tiles worth it at the start)
+   wave  1  E@build  300  spent  300  left    0 | towers  3  lost 0  lock   0.0s  leaks  0 | Arduino 100 HP
+      >> wave 1: leaks by type: none | towers lost: none | no Trojans | lock 0.0s | counters at start: 0 Spike, 0 EMP
+   wave  2  E@build   80  spent  100  left   33 | towers  4  lost 0  lock   0.0s  leaks  0 | Arduino 100 HP
+      >> wave 2: leaks by type: none | towers lost: none | no Trojans | lock 0.0s | counters at start: 0 Spike, 0 EMP
+   wave  3  E@build  155  spent  175  left   33 | towers  5  lost 0  lock   0.0s  leaks  7 | Arduino  85 HP
+      >> wave 3: leaks by type: Worm x5 (-5 HP), Basic Virus x2 (-10 HP) | towers lost: none | no Trojans | lock 0.0s | counters at start: 0 Spike, 1 EMP
+   wave  4  E@build  186  spent  236  left    4 | towers  7  lost 0  lock   0.0s  leaks  3 | Arduino  82 HP
+      >> wave 4: leaks by type: Worm x3 (-3 HP) | towers lost: none | no Trojans | lock 0.0s | counters at start: 0 Spike, 1 EMP
+   wave  5  E@build  204  spent  255  left    2 | towers  9  lost 0  lock   0.0s  leaks  0 | Arduino  82 HP
+      >> wave 5: leaks by type: none | towers lost: none | 2 Trojan(s): 1 split, 1 killed before splitting, 0 still on the field or leaked | lock 0.0s | counters at start: 0 Spike, 1 EMP
+   wave  6  E@build  175  spent  200  left   29 | towers 11  lost 1  lock   0.0s  leaks  0 | Arduino  82 HP
+      >> wave 6: leaks by type: none | towers lost: Antivirus Cannon (Worm clone) x1 | no Trojans | lock 0.0s | counters at start: 0 Spike, 1 EMP
+   wave  7  E@build  282  spent  285  left   50 | towers 11  lost 1  lock   0.0s  leaks  0 | Arduino  82 HP
+      >> wave 7: leaks by type: none | towers lost: Antivirus Cannon (Worm clone) x1 | 3 Trojan(s): 3 split, 0 killed before splitting, 0 still on the field or leaked | lock 0.0s | counters at start: 1 Spike, 1 EMP
+   wave  8  E@build  360  spent  366  left   47 | towers 12  lost 1  lock   0.0s  leaks  0 | Arduino  82 HP
+      >> wave 8: leaks by type: none | towers lost: Antivirus Cannon (Worm clone) x1 | 3 Trojan(s): 3 split, 0 killed before splitting, 0 still on the field or leaked | lock 0.0s | counters at start: 2 Spike, 1 EMP
+   wave  9  E@build  387  spent  385  left   55 | towers 13  lost 1  lock   0.0s  leaks  0 | Arduino  82 HP
+      >> wave 9: leaks by type: none | towers lost: Antivirus Cannon (Worm clone) x1 | 5 Trojan(s): 5 split, 0 killed before splitting, 0 still on the field or leaked | lock 0.0s | counters at start: 3 Spike, 1 EMP
+   wave 10  E@build  446  spent  460  left   40 | towers 16  lost 1  lock   0.0s  leaks  0 | Arduino  82 HP
+      >> wave 10: leaks by type: none | towers lost: Antivirus Cannon (Worm) x1 | 7 Trojan(s): 7 split, 0 killed before splitting, 0 still on the field or leaked | lock 0.0s | counters at start: 3 Spike, 1 EMP
+[specialist] L1 Bootloader  CLEARED Arduino  82/100 HP  (reached wave 10, 15 towers, spent 2762, lost 5 towers, 0 lock-s, 10 leaks | game 428s, real 1s) target: clears with >= 70 HP  -> PASS
+RESULT level=1 bot=specialist outcome=CLEARED hp=82 wave=10 ddos=-
+
+== check_balance summary (targets: docs/difficulty_fix.md 5.2) ==
+[specialist] L1 Bootloader  CLEARED Arduino  82/100 HP  (reached wave 10, 15 towers, spent 2762, lost 5 towers, 0 lock-s, 10 leaks | game 428s, real 1s) target: clears with >= 70 HP  -> PASS
+check_balance: PASS

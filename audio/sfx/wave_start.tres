@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" format=3]
+
+[ext_resource type="AudioStream" path="res://audio/sfx/wave_start/wave_start_1.wav" id="1_twgt7"]
+[ext_resource type="AudioStream" path="res://audio/sfx/wave_start/wave_start_2.wav" id="2_6twyw"]
+
+[resource]
+random_pitch = 1.0594631
+random_volume_offset_db = 2.0
+streams_count = 2
+stream_0/stream = ExtResource("1_twgt7")
+stream_1/stream = ExtResource("2_6twyw")

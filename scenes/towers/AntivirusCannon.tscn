@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/towers/antivirus_cannon.gd" id="1_xxx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxx"]
+size = Vector2(100, 100)
+
+[node name="AntivirusCannon" type="Node2D"]
+script = ExtResource("1_xxx")
+
+[node name="ClickArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
+shape = SubResource("RectangleShape2D_xxx")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true

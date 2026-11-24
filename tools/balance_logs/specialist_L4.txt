@@ -1,0 +1,31 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== [specialist] Level 4: Firewall Breach (start 500 Energy, Arduino 100 HP, 10 waves, Data Spikes from wave 4)
+   map: 26 buildable tiles, 50 route tiles, best tile covers 16, a tile is worth a Cannon at coverage >= 4.8 (26 tiles worth it at the start)
+   wave  1  E@build  500  spent  500  left    0 | towers  5  lost 0  lock   0.0s  leaks  0 | Arduino 100 HP
+      >> wave 1: leaks by type: none | towers lost: none | no Trojans | lock 0.0s | counters at start: 0 Spike, 0 EMP
+   wave  2  E@build  207  spent  175  left   85 | towers  6  lost 0  lock   0.0s  leaks  5 | Arduino  95 HP
+      >> wave 2: leaks by type: Worm x5 (-5 HP) | towers lost: none | no Trojans | lock 0.0s | counters at start: 0 Spike, 1 EMP
+   wave  3  E@build  294  spent  329  left   19 | towers  9  lost 0  lock   0.0s  leaks  4 | Arduino  91 HP
+      >> wave 3: leaks by type: DDoS Bot x4 (-4 HP) | towers lost: none | no Trojans | lock 0.0s | counters at start: 0 Spike, 1 EMP
+   wave  4  E@build  166  spent  200  left   19 | towers 11  lost 0  lock   0.0s  leaks  0 | Arduino  91 HP
+      >> wave 4: leaks by type: none | towers lost: none | no Trojans | lock 0.0s | counters at start: 0 Spike, 1 EMP
+   wave  5  E@build  239  spent  235  left   58 | towers 12  lost 0  lock   0.0s  leaks  0 | Arduino  91 HP
+      >> wave 5: leaks by type: none | towers lost: none | 4 Trojan(s): 0 split, 4 killed before splitting, 0 still on the field or leaked | lock 0.0s | counters at start: 1 Spike, 1 EMP
+   wave  6  E@build  332  spent  325  left   60 | towers 14  lost 0  lock  12.0s  leaks  0 | Arduino  91 HP
+      >> wave 6: leaks by type: none | towers lost: none | no Trojans | lock 12.0s | counters at start: 2 Spike, 1 EMP
+   wave  7  E@build  370  spent  337  left   86 | towers 16  lost 0  lock   0.0s  leaks  2 | Arduino  83 HP
+      >> wave 7: leaks by type: Basic Virus x2 (-8 HP) | towers lost: none | 5 Trojan(s): 3 split, 2 killed before splitting, 0 still on the field or leaked | lock 0.0s | counters at start: 3 Spike, 1 EMP
+   wave  8  E@build  464  spent  425  left   92 | towers 19  lost 0  lock  15.0s  leaks  6 | Arduino  77 HP
+      >> wave 8: leaks by type: Worm x6 (-6 HP) | towers lost: none | no Trojans | lock 15.0s | counters at start: 4 Spike, 1 EMP
+   wave  9  E@build  485  spent  530  left    8 | towers 22  lost 0  lock  21.0s  leaks  0 | Arduino  77 HP
+      >> wave 9: leaks by type: none | towers lost: none | 6 Trojan(s): 3 split, 3 killed before splitting, 0 still on the field or leaked | lock 21.0s | counters at start: 5 Spike, 1 EMP
+   wave 10  E@build  452  spent  496  left    9 | towers 25  lost 0  lock  24.0s  leaks  2 | Arduino  75 HP
+      >> wave 10: leaks by type: DDoS Bot x2 (-2 HP) | towers lost: none | 4 Trojan(s): 1 split, 3 killed before splitting, 0 still on the field or leaked | lock 24.0s | counters at start: 6 Spike, 1 EMP
+[specialist] L4 Firewall Breach CLEARED Arduino  75/100 HP  (reached wave 10, 25 towers, spent 3552, lost 0 towers, 71 lock-s, 19 leaks | game 458s, real 2s) target: clears with >= 20 HP  -> PASS
+RESULT level=4 bot=specialist outcome=CLEARED hp=75 wave=10 ddos=3:4,5:0,8:0,10:2
+
+== check_balance summary (targets: docs/difficulty_fix.md 5.2) ==
+[specialist] L4 Firewall Breach CLEARED Arduino  75/100 HP  (reached wave 10, 25 towers, spent 3552, lost 0 towers, 71 lock-s, 19 leaks | game 458s, real 2s) target: clears with >= 20 HP  -> PASS
+check_balance: PASS

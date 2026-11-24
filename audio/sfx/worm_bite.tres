@@ -1,0 +1,13 @@
+[gd_resource type="AudioStreamRandomizer" format=3]
+
+[ext_resource type="AudioStream" path="res://audio/sfx/worm_bite/worm_bite_1.wav" id="1_ctsfw"]
+[ext_resource type="AudioStream" path="res://audio/sfx/worm_bite/worm_bite_2.wav" id="2_leyid"]
+[ext_resource type="AudioStream" path="res://audio/sfx/worm_bite/worm_bite_3.wav" id="3_olf8c"]
+
+[resource]
+random_pitch = 1.0594631
+random_volume_offset_db = 2.0
+streams_count = 3
+stream_0/stream = ExtResource("1_ctsfw")
+stream_1/stream = ExtResource("2_leyid")
+stream_2/stream = ExtResource("3_olf8c")
