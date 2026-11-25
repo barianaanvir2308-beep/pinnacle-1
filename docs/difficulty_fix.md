@@ -1,6 +1,6 @@
 # Protocol Zero: Difficulty Fix
 
-**For:** Claude Code (implementation) and the team (review)
+**For:** the developer implementing it and the team (review)
 **Based on:** a read-through of the current code (after balance_spec Phases 1–3 and the team's own changes) plus the balance model in `balance_spec.md` §6.1
 **Status:** interim fix, to apply **before** Phase 4. It replaces the wave tables in `balance_spec.md` §5.3 **until Phase 4 (new towers and viruses) is done**. After that, go back to the §5.3 tables.
 **Date:** October 2026

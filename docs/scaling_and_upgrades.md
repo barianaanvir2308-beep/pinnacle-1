@@ -1,13 +1,13 @@
 # Protocol Zero: Scaling & Upgrades Spec
 
-**For:** Claude Code (implementation) and the team (design review)
+**For:** the developer implementing it and the team (design review)
 **Builds on:** `docs/balance_spec.md` v2 and `docs/td_research.md` v2
 **Replaces:** the linear L1/L2/L3 upgrade rules in `balance_spec.md` §3 (the "Upgrades" lines under §3.1, the L2/L3 columns in §3.2–3.3, and the §2.2 Decoder level table). **Base (unupgraded) tower stats in `balance_spec.md` stay as they are.**
 **Version:** v1, October 2026. All numbers are starting values for playtesting.
 
 ---
 
-## How Claude Code should use this doc
+## How to use this doc when implementing
 
 1. Read Part A only for context. Parts B–E are the instructions.
 2. Implement in the order in **Part E.1**. Keep every number in `autoloads/globals.gd` (an `UPGRADE_TREES` dictionary) so the team can tune it in one place.
@@ -197,7 +197,7 @@ Using the income model in `balance_spec.md` §5.2 (Energy gained per wave grows 
 
 ---
 
-## Part E: Implementation (Claude Code)
+## Part E: Implementation
 
 ### E.1 Order of work (stop for review after each step)
 

@@ -1,11 +1,11 @@
 # Protocol Zero: UI / HUD Design Handoff
 
-**For:** Claude Code (implementation) and the team (design review)
+**For:** the developer implementing it and the team (design review)
 **Look we're going for:** cyberpunk / futuristic. "You are the computer's own defence terminal."
 **Builds on:** the current UI code (`scripts/main/hud.gd`, `scripts/ui/*`) and the gameplay docs in `docs/`
 **Version:** v1, October 2026
 
-Part A is the research. Part B is the rules (why a UI is good *and* fun). Part C is the cyberpunk style guide. Part D specifies each screen and component. Part E is the build order for Claude Code.
+Part A is the research. Part B is the rules (why a UI is good *and* fun). Part C is the cyberpunk style guide. Part D specifies each screen and component. Part E is the build order.
 
 ---
 
@@ -302,7 +302,7 @@ Every button in the game (cards excepted) uses this component with these states:
 
 ---
 
-## Part E: Build order for Claude Code
+## Part E: Build order
 
 Do the steps in order, stop after each for review, and run the existing checks after each. Take a screenshot with `screenshot.gd` at the end of each step so the team can review the look.
 

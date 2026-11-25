@@ -1,6 +1,6 @@
 # Protocol Zero: Sound Design and Audio Integration Spec
 
-**For:** Claude Code (or any coding agent) working in the Godot 4.7 project `trialgame/`
+**For:** whoever implements it (a developer or a coding agent) working in the Godot 4.7 project `trialgame/`
 **Status:** The game has no audio yet. `scripts/managers/audio_manager.gd` only prints placeholder messages and is never added to the game. There are no audio buses and no sound files.
 **Sound source:** sound effects are generated with **ElevenLabs** (Sound Effects v3).
 **Research behind this spec:** `docs/research/Tower defense game sound design.md`, with sources.
