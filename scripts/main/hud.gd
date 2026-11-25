@@ -10,7 +10,7 @@ var energy_bar_fill: ColorRect
 var energy_flashing: bool = false  # the bar flashes once Energy is within 10% of the capacity
 var _energy: int = 0
 var _flash_time: float = 0.0
-var console_label: Label  # "CONSOLE LINKED" while the Arduino console is plugged in
+var console_label: Label  # "CONTROLLER LINKED" while the Arduino controller is plugged in
 var message_label: Label
 var message_timer: Timer
 
@@ -91,7 +91,7 @@ func _create_ui() -> void:
 	top_bar.add_child(energy_bar_fill)
 	
 	console_label = Label.new()
-	console_label.text = "CONSOLE LINKED"
+	console_label.text = "CONTROLLER LINKED"
 	console_label.add_theme_color_override("font_color", Color(1.0, 0.84, 0.0))
 	console_label.add_theme_font_size_override("font_size", 14)
 	console_label.position = Vector2(1440, 4)

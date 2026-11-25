@@ -72,11 +72,14 @@ func _create_card(type: int, hotkey_idx: int) -> Control:
 	hover_style.bg_color = Color(0.15, 0.15, 0.2, 1.0)
 	hover_style.border_color = Color(0.0, 1.0, 0.53, 1.0)
 	btn.add_theme_stylebox_override("hover", hover_style)
+	btn.set_meta("style_normal", style)
+	btn.set_meta("style_highlight", hover_style)
 	
 	var disabled_style = style.duplicate()
 	disabled_style.bg_color = Color(0.05, 0.05, 0.05, 1.0)
 	disabled_style.border_color = Color(0.3, 0.1, 0.1, 1.0)
 	btn.add_theme_stylebox_override("disabled", disabled_style)
+	btn.set_meta("style_disabled", disabled_style)
 	
 	btn.text = "[KEY: %d]  %s\nCOST: %d ENERGY" % [hotkey_idx, data.name.to_upper(), data.cost]
 	btn.add_theme_font_size_override("font_size", 24)
@@ -86,6 +89,13 @@ func _create_card(type: int, hotkey_idx: int) -> Control:
 	# Don't keep keyboard focus, or Space presses this button instead of starting the wave
 	btn.focus_mode = Control.FOCUS_NONE
 	return btn
+
+# The Arduino controller's tower picker lights up the card it is on (-1 = none)
+func highlight(index: int) -> void:
+	for i in range(cards.size()):
+		var lit: bool = i == index
+		cards[i].add_theme_stylebox_override("normal", cards[i].get_meta("style_highlight" if lit else "style_normal"))
+		cards[i].add_theme_stylebox_override("disabled", cards[i].get_meta("style_highlight" if lit else "style_disabled"))
 
 func _on_energy_changed(amount: int) -> void:
 	for i in range(cards.size()):

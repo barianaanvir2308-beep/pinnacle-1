@@ -19,6 +19,8 @@ const SHEET_SPAWN: Texture2D = preload("res://assets/sprites/map/sheet_spawn.png
 
 var placement_preview_pos: Vector2i = Vector2i(-1, -1)
 var placement_valid: bool = false
+var controller_cursor: Vector2i = Vector2i(-1, -1)  # the Arduino controller's cursor tile (controller_input.gd)
+var controller_cursor_mode: int = 0                 # 0 = plain cursor, 1 = can build here, 2 = can't build here
 var astar: AStar2D
 var _tiles: Node2D
 var _tile_frames: SpriteFrames
@@ -134,6 +136,14 @@ func clear_preview() -> void:
 	placement_preview_pos = Vector2i(-1, -1)
 	queue_redraw()
 
+# The Arduino controller's cursor. A position off the board hides it.
+func show_controller_cursor(grid_pos: Vector2i, mode: int) -> void:
+	if grid_pos == controller_cursor and mode == controller_cursor_mode:
+		return
+	controller_cursor = grid_pos
+	controller_cursor_mode = mode
+	queue_redraw()
+
 # =============================================================================
 # TILE SPRITES
 # =============================================================================
@@ -222,3 +232,10 @@ func _draw() -> void:
 		var color = Color(0.0, 1.0, 0.53, 0.35) if placement_valid else Color(1.0, 0.2, 0.2, 0.35)
 		draw_rect(preview_rect, color)
 		draw_rect(preview_rect, color * 1.5, false, 2.0)
+	if controller_cursor.x >= 0 and controller_cursor.y >= 0:
+		var ts = Globals.TILE_SIZE
+		var offset = Globals.GRID_OFFSET
+		var cursor_rect = Rect2(controller_cursor.x * ts + offset.x, controller_cursor.y * ts + offset.y, ts, ts)
+		if controller_cursor_mode != 0:
+			draw_rect(cursor_rect, Color(0.0, 1.0, 0.53, 0.35) if controller_cursor_mode == 1 else Color(1.0, 0.2, 0.2, 0.35))
+		draw_rect(cursor_rect.grow(-3.0), Color(1.0, 0.84, 0.0), false, 6.0)

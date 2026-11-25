@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
-"""Protocol Zero hardware bridge: Arduino (USB serial) <-> Godot (UDP on localhost).
+"""Protocol Zero hardware bridge: Arduino controller (USB serial) <-> Godot (UDP on localhost).
 
-Godot 4 has no built-in serial port API, so this small program sits between the Arduino console and the game:
+Godot 4 has no built-in serial port API, so this small program sits between the Arduino controller and the game:
 
-    Arduino --serial 115200--> bridge --UDP 127.0.0.1:9101--> game   (HELLO PZ1, HB, BTN OVERDRIVE)
-    Arduino <--serial 115200-- bridge <--UDP 127.0.0.1:9102-- game   (K <n>, S READY / S COOLDOWN <s> / ..., PING)
+    Arduino --serial 115200--> bridge --UDP 127.0.0.1:9101--> game
+        HELLO PZ2, HB, JOY U / JOY D / JOY L / JOY R, BTN SELECT / BTN OVERRIDE / BTN BACK
+
+The controller has no screen or lights, so the game sends nothing back. (Anything the game does send to UDP 9102
+is still passed on to the board.)
 
 The bridge also tells the game whether a board is plugged in, with its own lines:
     "LINK UP <port>"   a serial port was opened
-    "LINK DOWN"        no board, or the board was unplugged (the game then ignores the console)
+    "LINK DOWN"        no board, or the board was unplugged (the game then ignores the controller)
 
 Usage
     pip3 install pyserial
