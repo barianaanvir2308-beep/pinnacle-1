@@ -27,8 +27,17 @@ func _ready() -> void:
 	sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	vbox.add_child(sub)
 	
+	# Whether a controller is linked, right on the first screen (it updates live)
+	var badge_gap = Control.new()
+	badge_gap.custom_minimum_size = Vector2(0, 30)
+	vbox.add_child(badge_gap)
+	var badge := ControllerBadge.new()
+	badge.name = "ControllerBadge"
+	badge.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	vbox.add_child(badge)
+	
 	var spacer = Control.new()
-	spacer.custom_minimum_size = Vector2(0, 50)
+	spacer.custom_minimum_size = Vector2(0, 40)
 	vbox.add_child(spacer)
 	
 	var btn = Button.new()

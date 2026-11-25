@@ -136,6 +136,39 @@ func clear_preview() -> void:
 	placement_preview_pos = Vector2i(-1, -1)
 	queue_redraw()
 
+const CURSOR_CYAN := Color(0.176, 0.886, 1.0)    # cyan #2DE2FF: focus and selection (docs/ui_hud_design.md)
+const CURSOR_OK := Color(0.361, 1.0, 0.616)       # green #5CFF9D
+const CURSOR_BAD := Color(1.0, 0.302, 0.369)      # red #FF4D5E
+
+# The controller cursor redraws every frame only while it is shown (for its pulse)
+func _process(_delta: float) -> void:
+	if controller_cursor.x >= 0:
+		queue_redraw()
+
+# Cyan corner brackets with a slow pulse and a faint glow. While a tower is waiting to be built there, the tile is
+# tinted green (can build) or red with a cross (can't), so colour is never the only cue.
+func _draw_controller_cursor(rect: Rect2) -> void:
+	var pulse := 0.5 + 0.5 * sin(Time.get_ticks_msec() / 1000.0 * TAU * 1.2)
+	if controller_cursor_mode == 1:
+		draw_rect(rect, Color(CURSOR_OK, 0.28))
+	elif controller_cursor_mode == 2:
+		draw_rect(rect, Color(CURSOR_BAD, 0.28))
+		var c := rect.get_center()
+		var r := rect.size.x * 0.22
+		draw_line(c - Vector2(r, r), c + Vector2(r, r), CURSOR_BAD, 6.0)
+		draw_line(c + Vector2(-r, r), c + Vector2(r, -r), CURSOR_BAD, 6.0)
+	else:
+		draw_rect(rect, Color(CURSOR_CYAN, 0.08 + 0.06 * pulse))
+	draw_rect(rect.grow(-2.0), Color(CURSOR_CYAN, 0.25 + 0.2 * pulse), false, 2.0)
+	var inset := rect.grow(-4.0 + 3.0 * pulse)
+	var arm := rect.size.x * 0.28
+	var w := 6.0
+	for corner in [inset.position, Vector2(inset.end.x, inset.position.y), inset.end, Vector2(inset.position.x, inset.end.y)]:
+		var sx := 1.0 if corner.x < rect.get_center().x else -1.0
+		var sy := 1.0 if corner.y < rect.get_center().y else -1.0
+		draw_line(corner, corner + Vector2(arm * sx, 0), CURSOR_CYAN, w)
+		draw_line(corner, corner + Vector2(0, arm * sy), CURSOR_CYAN, w)
+
 # The Arduino controller's cursor. A position off the board hides it.
 func show_controller_cursor(grid_pos: Vector2i, mode: int) -> void:
 	if grid_pos == controller_cursor and mode == controller_cursor_mode:
@@ -236,6 +269,4 @@ func _draw() -> void:
 		var ts = Globals.TILE_SIZE
 		var offset = Globals.GRID_OFFSET
 		var cursor_rect = Rect2(controller_cursor.x * ts + offset.x, controller_cursor.y * ts + offset.y, ts, ts)
-		if controller_cursor_mode != 0:
-			draw_rect(cursor_rect, Color(0.0, 1.0, 0.53, 0.35) if controller_cursor_mode == 1 else Color(1.0, 0.2, 0.2, 0.35))
-		draw_rect(cursor_rect.grow(-3.0), Color(1.0, 0.84, 0.0), false, 6.0)
+		_draw_controller_cursor(cursor_rect)

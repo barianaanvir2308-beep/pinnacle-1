@@ -381,7 +381,7 @@ func _on_all_waves_completed() -> void:
 # Level 1 teaches the Emergency Overclock when it unlocks, at wave 3
 func _on_wave_started(wave_number: int) -> void:
 	if Globals.current_level == 0 and wave_number == Globals.OVERCLOCK.unlock_wave_level_1:
-		Events.show_message.emit("EMERGENCY OVERCLOCK UNLOCKED:  press O or OVERRIDE on the controller for +%d Energy  (it adds System Load)" % Globals.OVERCLOCK.energy, 6.0)
+		Events.show_message.emit("EMERGENCY OVERCLOCK UNLOCKED:  press O or the controller's OVERRIDE / OVERDRIVE button for +%d Energy  (it adds System Load)" % Globals.OVERCLOCK.energy, 6.0)
 
 func _start_next_wave() -> void:
 	_between_waves = false

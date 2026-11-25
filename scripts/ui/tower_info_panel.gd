@@ -153,6 +153,65 @@ func _box(bg: Color, border: Color, border_width: int, radius: int, padding: flo
 # SHOWING / HIDING
 # =============================================================================
 
+# =============================================================================
+# CONTROLLER (joystick + SELECT, see controller_input.gd)
+# =============================================================================
+
+const COLOR_FOCUS := Color(0.176, 0.886, 1.0)  # cyan #2DE2FF: focus and selection (docs/ui_hud_design.md)
+var _ctrl_lit: Button = null
+
+# The panel's buttons in screen order, as the joystick steps through them: upgrade cards, Repair, Sell
+func controller_buttons() -> Array:
+	var out: Array = []
+	for path in ["A", "B"]:
+		if cards.has(path) and cards[path].panel.visible:
+			out.append(cards[path].button)
+	if repair_button.visible:
+		out.append(repair_button)
+	if sell_button.visible:
+		out.append(sell_button)
+	return out
+
+# Lights one button with a cyan frame (-1 = none). Disabled buttons are lit too, so the player can read why.
+func controller_highlight(index: int) -> void:
+	var buttons := controller_buttons()
+	var target: Button = buttons[index] if index >= 0 and index < buttons.size() else null
+	if target == _ctrl_lit:
+		return
+	if _ctrl_lit != null and is_instance_valid(_ctrl_lit):
+		for slot in ["normal", "disabled"]:
+			_ctrl_lit.add_theme_stylebox_override(slot, _ctrl_lit.get_meta("ctrl_" + slot))
+	_ctrl_lit = target
+	if target == null:
+		return
+	for slot in ["normal", "disabled"]:
+		var original: StyleBox = target.get_theme_stylebox(slot)
+		target.set_meta("ctrl_" + slot, original)
+		var lit := StyleBoxFlat.new()
+		if original is StyleBoxFlat:
+			lit = original.duplicate()
+		else:
+			lit.bg_color = Color(COLOR_FOCUS, 0.08)
+			lit.set_corner_radius_all(6)
+		lit.border_color = COLOR_FOCUS
+		lit.set_border_width_all(3)
+		target.add_theme_stylebox_override(slot, lit)
+
+# SELECT on a lit button: exactly what a mouse click on it does. A disabled one explains itself instead.
+func controller_press(index: int) -> void:
+	var buttons := controller_buttons()
+	if index < 0 or index >= buttons.size():
+		return
+	var button: Button = buttons[index]
+	if not button.disabled:
+		button.pressed.emit()
+		return
+	for path in cards:
+		if cards[path].button == button:
+			_show_hint(cards[path].status.text if cards[path].status.text != "" else "Not available")
+			return
+	_show_hint(button.text)
+
 func _on_tower_selected(selected: Node) -> void:
 	tower = selected
 	_sell_armed = 0.0
@@ -162,6 +221,7 @@ func _on_tower_selected(selected: Node) -> void:
 	refresh()
 
 func _on_tower_deselected() -> void:
+	controller_highlight(-1)
 	tower = null
 	visible = false
 

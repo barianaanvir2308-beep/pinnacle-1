@@ -8,6 +8,14 @@ func _ready() -> void:
 	if back_button:
 		back_button.pressed.connect(_on_back_pressed)
 		Audio.ui(back_button)
+	# Controller status, small, in the top-right corner
+	var badge := ControllerBadge.new()
+	badge.name = "ControllerBadge"
+	badge.compact = true
+	badge.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	badge.grow_horizontal = Control.GROW_DIRECTION_BEGIN
+	badge.position += Vector2(-24, 24)
+	add_child(badge)
 	_populate_levels()
 
 func _populate_levels() -> void:
