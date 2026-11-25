@@ -179,6 +179,10 @@ func _on_game_state_changed(old_state: int, new_state: int) -> void:
 	if new_state != Globals.GameState.BUILD_PHASE and new_state != Globals.GameState.WAVE_ACTIVE \
 			and new_state != Globals.GameState.PAUSED:
 		tower_mgr.deselect_tower()
+	# A level that ends mid-wave must not keep spawning (the tree is not paused on these screens)
+	if new_state == Globals.GameState.GAME_OVER or new_state == Globals.GameState.MAIN_MENU \
+			or new_state == Globals.GameState.LEVEL_SELECT:
+		wave_mgr.stop_waves()
 	match new_state:
 		Globals.GameState.MAIN_MENU:
 			_set_game_visible(false)

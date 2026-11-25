@@ -21,6 +21,8 @@ func _ready() -> void:
 	await _check_game()
 	print("== wave spawn intervals")
 	await _check_wave_intervals()
+	print("== a wave cut short does not leak into the next level")
+	await _check_wave_cut_short()
 	print("check_gameplay: %d failure(s)" % _fails)
 	get_tree().quit(1 if _fails > 0 else 0)
 
@@ -147,3 +149,60 @@ func _check_wave_intervals() -> void:
 				ok = false
 		_check(ok, "gaps between spawns follow each group's interval (got %s)" % [gaps.map(func(g): return snappedf(g, 0.01))])
 	wm.free()
+
+# Regression: a level that ends mid-wave (Game Over, or leaving to the menu) used to leave the
+# WaveManager's spawn timer running. It kept spawning onto the hidden board during GAME_OVER and,
+# once a new level had loaded, fired on the empty queue and emitted wave_completed(0, bonus):
+# +15 Energy, "WAVE 0 CLEARED" and a 15 s build countdown on a fresh level.
+func _check_wave_cut_short() -> void:
+	# load_level_waves on its own must stop a pending spawn
+	var wm := WaveManager.new()
+	add_child(wm)
+	wm.load_level_waves(0)
+	wm.start_wave()
+	_check(not wm.spawn_timer.is_stopped(), "a running wave has a spawn pending")
+	wm.load_level_waves(1)
+	_check(wm.spawn_timer.is_stopped() and wm._spawn_queue.is_empty() and not wm.is_spawning,
+		"load_level_waves stops the spawn timer and clears the queue")
+	wm.free()
+
+	# The real flow: wave running -> GAME_OVER -> LEVEL_SELECT -> another level
+	var main = load("res://scenes/main/Main.tscn").instantiate()
+	add_child(main)
+	await get_tree().process_frame
+	Events.level_selected.emit(0)
+	await get_tree().process_frame
+	var gsm = main.game_state_mgr
+	var spawned := [0]
+	main.wave_mgr.spawn_enemy_requested.connect(func(_t, _h, _s): spawned[0] += 1)
+	var completed: Array = []
+	var on_completed := func(w, b): completed.append([w, b])
+	Events.wave_completed.connect(on_completed)
+	main._start_next_wave()  # Level 1 wave 1: 5 Basic Viruses, 2.0 s apart
+	await get_tree().process_frame
+	_check(spawned[0] == 1 and main.wave_mgr._spawn_queue.size() == 4, "wave 1 started with 4 viruses still queued")
+
+	gsm.change_state(Globals.GameState.GAME_OVER)
+	await get_tree().create_timer(2.3).timeout  # longer than the 2.0 s spawn interval
+	_check(spawned[0] == 1, "no viruses spawn after GAME_OVER (spawned %d)" % spawned[0])
+	# a virus left on the board dying during GAME_OVER must not clear the wave either
+	main.enemy_mgr.clear_all_enemies()
+	main.wave_mgr.on_enemy_removed()
+	await get_tree().process_frame
+
+	gsm.change_state(Globals.GameState.LEVEL_SELECT)
+	Events.level_selected.emit(1)
+	await get_tree().process_frame
+	var start_energy: int = Globals.get_level_config(1).get("starting_energy", 300)
+	await get_tree().create_timer(2.3).timeout
+	_check(completed.is_empty(), "no wave_completed after the level ended mid-wave (got %s)" % [completed])
+	_check(ResourceManager.current_energy == start_energy,
+		"Energy on the new level = its starting_energy %d (got %d)" % [start_energy, ResourceManager.current_energy])
+	_check(main.build_countdown <= 0.0, "no build countdown running on the new level (%.1f)" % main.build_countdown)
+	_check(gsm.current_state == Globals.GameState.BUILD_PHASE and main.wave_mgr.current_wave == 0,
+		"the new level waits in BUILD_PHASE at wave 0")
+	_check(spawned[0] == 1, "no viruses spawned on the new level (spawned %d)" % spawned[0])
+
+	Events.wave_completed.disconnect(on_completed)
+	main.queue_free()
+	await get_tree().process_frame

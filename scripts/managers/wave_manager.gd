@@ -18,12 +18,20 @@ func _ready() -> void:
 	add_child(spawn_timer)
 
 func load_level_waves(level_index: int) -> void:
+	stop_waves()  # also keeps wave_completed shut until start_wave() opens it
 	_level_waves = Globals.get_level_waves(level_index)
 	current_wave = 0
 	enemies_remaining = 0
-	is_spawning = false
-	_wave_complete_emitted = false
+
+# Ends the current wave without completing it (Game Over, leaving to the menu, loading a level):
+# drops the viruses still queued and the pending spawn, and stops this wave from ever
+# reporting wave_completed. Otherwise the timer keeps spawning onto the hidden board and later
+# fires on the next level's empty queue, which emits wave_completed(0, bonus) there.
+func stop_waves() -> void:
+	spawn_timer.stop()
 	_spawn_queue.clear()
+	is_spawning = false
+	_wave_complete_emitted = true
 
 func start_wave() -> void:
 	if current_wave >= _level_waves.size() or is_spawning:

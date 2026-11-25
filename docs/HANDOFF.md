@@ -1,7 +1,7 @@
 # Protocol Zero: Project Handoff
 
 **Purpose of this document:** It gives any AI assistant or new teammate everything needed to keep working on *Protocol Zero*: the game and its current code, what is still unfinished, and the plan for the Arduino hardware controller. It does not assume you have seen any earlier conversation.
-**Last updated:** 20 October 2026
+**Last updated:** 26 November 2026
 **Project owner:** Tanmay Gupta. He's a first-year B.Tech CS (AI & ML) student, works on a Mac, and his main interest is the software side.
 
 ---
@@ -90,16 +90,19 @@ trialgame/
   * `overclock_used(energy)`, `system_crashed()` and `system_load_changed(load, max)`.
   * `wave_started(n)`, `wave_completed(n, bonus)`, `level_selected(i)`, `game_over()` and `victory()`.
   * `energy_changed(amount)` and `base_health_changed(hp, max)`.
+* **Wave lifecycle (`WaveManager`):** `start_wave()` queues the wave's viruses and spawns them one by one with `spawn_timer`. `wave_completed` can only fire after `start_wave()` and at most once per wave. `stop_waves()` ends a wave without completing it: it stops the timer, empties the queue and blocks `wave_completed` until the next `start_wave()`. `main.gd` calls it when the game enters GAME_OVER, MAIN_MENU or LEVEL_SELECT, and `load_level_waves()` calls it too. The game tree is not paused on those screens, so without it a level that ended mid-wave kept spawning onto the hidden board. The timer then fired on the next level and emitted `wave_completed(0, bonus)`: +15 Energy, "WAVE 0 CLEARED" and a 15 s build countdown on a fresh level. This was fixed on 26 November 2026, and `check_gameplay` ("a wave cut short does not leak into the next level") guards it.
 
 ### 3.3 Running checks
 
 ```bash
 godot --headless --path . res://tools/checks/check_project.tscn
 # also: check_balance, check_economy, check_gameplay, check_upgrades, check_abilities,
-#       check_behaviours, check_viruses, check_ui, check_art
+#       check_behaviours, check_viruses, check_ui, check_art, check_hardware, check_audio
 ```
 
 Run the relevant checks after every change. Add a check whenever you add a new system.
+
+Wrap each run in a time limit, for example `perl -e 'alarm 400; exec @ARGV' godot --headless ...`, because a parse error in a check scene makes it hang. `check_balance` with no arguments plays all 5 levels one after another, which takes longer than 400 s (exit code 142 means the alarm stopped it, not that it hung). Use `python3 tools/balance_matrix.py` instead: it runs every level × bot pair in parallel with `--fixed-fps 60`, so its results are deterministic and can be compared with the logs in `tools/balance_logs/` from before a change.
 
 ### 3.4 Controls (input map in `project.godot`)
 
